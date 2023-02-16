@@ -106,7 +106,7 @@ async function waitForHalfMinute() {
     const now = new Date();
     const secs = now.getSeconds();
     const sleepSecs = (secs < 30) ? 30 - secs : 60 - secs;
-    console.log('Waking for half-minute:', sleepSecs, 'seconds until start');
+    console.log('Waiting for half-minute:', sleepSecs, 'seconds until start');
     await sleep(sleepSecs);
     // console.log('On half minute');
 }
