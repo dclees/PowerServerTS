@@ -1,7 +1,13 @@
 type LatestPowerData = {
 
-    date : string,
-    time: string,
+    year: number,
+    month: number,
+    day: number,
+
+    hour: number,
+    mins: number,
+    secs: number,
+
     powerNow: number,
     energyToday: number
 }
@@ -11,10 +17,17 @@ type Shared = {
 }
 
 const latestPowerData: LatestPowerData = {
-    date: "",
-    time: "",
+    
+    year: 0,
+    month: 0,
+    day: 0,
+    
+    hour: 0,
+    mins: 0,
+    secs: 0,
+
     powerNow: -1,
-    energyToday: -1
+    energyToday: -1,
 }
 
 export const shared : Shared = {

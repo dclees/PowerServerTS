@@ -60,7 +60,8 @@ async function getSolisData() {
     let powerNow = 0;
     let energyToday = 0;
     let bGotData = false;
-    const [date, time] = getDateAndTime();
+    const [year, month, day,
+            hour, mins, secs] = getDateAndTime();
 
     // When this fails authorization
     // curl -H "Authorization: Basic YWRtaW46YWRtaW4=" -v http://192.168.1.239:80
@@ -80,12 +81,14 @@ async function getSolisData() {
         [bGotData, powerNow, energyToday] = parseSolisData(body);
 
         if (bGotData) {
+            const date = `${year}/${month}/${day}`;
+            const time = `${hour}:${mins}:${secs}`;
             console.log(`Data: ${date} at ${time} Power-Now  : ${powerNow} Watts, Power-Today: ${energyToday} kWHr`);
 
             energyToday *= 1000; // to make it WattHrs
             shared.latestPowerData = {
-                date,
-                time,
+                year, month, day,
+                hour, mins, secs,
                 powerNow,
                 energyToday
             }
@@ -111,18 +114,20 @@ async function waitForHalfMinute() {
     // console.log('On half minute');
 }
 
-function getDateAndTime(): [string, string] {
+function getDateAndTime(): [number, number, number, number, number, number] {
     const now = new Date();
-    const sYear = String(now.getFullYear());
-    const sMnth = String(now.getMonth() + 1).padStart(2, '0');
-    const sDay = String(now.getDate()).padStart(2, '0');
-    const sHrs = String(now.getHours()).padStart(2, '0');
-    const sMins = String(now.getMinutes()).padStart(2, '0');
-    const sSecs = String(now.getSeconds()).padStart(2, '0');
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+    const hour = now.getHours();
+    const mins = now.getMinutes();
+    const secs = now.getSeconds();
 
-    const dateStr = `${sYear}/${sMnth}/${sDay}`;
-    const timeStr = `${sHrs}:${sMins}:${sSecs}`;
-    return [dateStr, timeStr];
+    // const dateStr = `${sYear}/${sMnth}/${sDay}`;
+    // const timeStr = `${sHrs}:${sMins}:${sSecs}`;
+    // return [dateStr, timeStr];
+
+    return [year, month, day, hour, mins, secs];
 }
 
 function doGetSolisData() {

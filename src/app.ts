@@ -28,5 +28,4 @@ const main = () => {
     });
 }
 
-console.log('Starting solis node app');
 main();
