@@ -4,9 +4,12 @@ import { startSolisData } from './solisData.js'
 import { shared } from './shared.js';
 
 
-dotenv.config()
+dotenv.config();
 const app: Application = express();
 const port = process.env.PORT || 3000;
+shared.dbUsername = process.env.DB_USER;
+shared.dbPassword = process.env.DB_PASSWORD;
+// console.log(`Port: ${port}, User: ${shared.dbUsername}, pwd: ${shared.dbPassword}`);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello Power World!');

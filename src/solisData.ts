@@ -91,7 +91,8 @@ async function getSolisData() {
                 hour, mins, secs,
                 powerNow,
                 energyToday
-            }
+            };
+            shared.dbWriter.write(shared.latestPowerData);
         }
 
     } else {

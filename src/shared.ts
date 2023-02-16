@@ -1,4 +1,6 @@
-type LatestPowerData = {
+import { dbMongo } from './dbWriterMongo.js'
+
+export type LatestPowerData = {
 
     year: number,
     month: number,
@@ -13,7 +15,10 @@ type LatestPowerData = {
 }
 
 type Shared = {
-    latestPowerData: LatestPowerData
+    latestPowerData: LatestPowerData,
+    dbWriter: dbMongo,
+    dbUsername: string | undefined,
+    dbPassword: string | undefined,
 }
 
 const latestPowerData: LatestPowerData = {
@@ -31,5 +36,8 @@ const latestPowerData: LatestPowerData = {
 }
 
 export const shared : Shared = {
-    latestPowerData 
+    latestPowerData,
+    dbWriter: new dbMongo(),
+    dbUsername: '',
+    dbPassword: ''
 }
