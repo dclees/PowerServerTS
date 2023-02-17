@@ -48,6 +48,7 @@ export class dbMongo {
 
             console.log('Recreating dbClient');
             this.recreateClient(collectionName);
+            this.dbWriteCount = 0;
             console.log('dbClient created');
         }
 
