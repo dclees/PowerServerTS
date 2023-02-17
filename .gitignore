@@ -1,5 +1,6 @@
 build
 .DS_Store
+log.txt
 
 # Logs
 logs
