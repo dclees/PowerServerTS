@@ -3,5 +3,5 @@
 ## To run - npm run start or node ./build/app.js
 
 ### Updates every 30 secs
-Data available at http://localserver:3000/Latest
+Data available at http://localhost:3000/Latest
 
