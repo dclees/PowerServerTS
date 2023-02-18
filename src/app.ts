@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv'
 import express, { Application, Request, Response } from 'express';
-import { startSolisData } from './solisData.js'
-import { shared } from './shared.js';
+import { startSolisData } from './solisData'
+import { shared } from './shared';
 
 
 dotenv.config();

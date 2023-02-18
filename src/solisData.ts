@@ -1,6 +1,6 @@
 // import http, { globalAgent } from 'http';
 import axios from 'axios';
-import { shared } from './shared.js';
+import { shared } from './shared';
 
 let solisConfig = {
     // haveSolisAuthorisation: false,

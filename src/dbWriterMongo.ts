@@ -1,5 +1,5 @@
 import { MongoClient, Db, Collection, ServerApiVersion } from 'mongodb';
-import { LatestPowerData, shared } from "./shared.js";
+import { LatestPowerData, shared } from "./shared";
 
 
 const months: string[] = [

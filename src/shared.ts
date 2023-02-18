@@ -1,4 +1,4 @@
-import { dbMongo } from './dbWriterMongo.js'
+import { dbMongo } from './dbWriterMongo'
 
 export type LatestPowerData = {
 
