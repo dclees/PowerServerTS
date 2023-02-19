@@ -134,7 +134,7 @@ function getDateAndTime(): [number, number, number, number, number, number] {
 function doGetSolisData() {
     getSolisData()
         .catch(reason => {
-            console.log('GetSolis failed ', reason);
+            console.log('GetSolis failed '); //, reason);
         })
 }
 
