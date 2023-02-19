@@ -18,10 +18,12 @@ function getValue(s: String): [boolean, number] {
     if (parts.length == 3) {
         res = parseFloat(parts[1]);
         if (isNaN(res)) {
-            console.log(`NaN: ${parts} from ${s}`);
+            // console.log(`NaN: ${parts} from ${s}`);
             res = 0;
+            bGotData = false;
         } else {
-            bGotData = (res != 0);
+            // console.log('Data value', res, ' from ', s);
+            bGotData = true;
         }
     }
     return [bGotData, res];
@@ -73,14 +75,17 @@ async function getSolisData() {
         url: endPoint,
         headers: solisConfig.solisAuthorization, // { 'Authorization': "Basic YWRtaW46YWRtaW4=" },
     }
+    // console.log('Getting solis data');
     const response = await axios(config);
     if (response.status == 200) {
 
+        // console.log(  'Got response');
         const body = await response.data.toString();
         // console.log(body.slice(0, 200));
         [bGotData, powerNow, energyToday] = parseSolisData(body);
 
         if (bGotData) {
+            // console.log(  'Got data');
             const date = `${year}/${month}/${day}`;
             const time = `${hour}:${mins}:${secs}`;
             console.log(`Data: ${date} at ${time} Power-Now  : ${powerNow} Watts, Power-Today: ${energyToday} kWHr`);
@@ -93,6 +98,9 @@ async function getSolisData() {
                 energyToday
             };
             shared.dbWriter.write(shared.latestPowerData);
+        }
+        else {
+            console.log('No data from Solis');
         }
 
     } else {
@@ -134,7 +142,7 @@ function getDateAndTime(): [number, number, number, number, number, number] {
 function doGetSolisData() {
     getSolisData()
         .catch(reason => {
-            console.log('GetSolis failed '); //, reason);
+            console.log('GetSolis failed ', reason);
         })
 }
 
