@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv'
 import express, { Application, Request, Response } from 'express';
 import { startSolisData } from './solisData'
 import { shared } from './shared';
-
+import cors from 'cors'
 
 dotenv.config();
 const app: Application = express();
@@ -11,7 +11,13 @@ shared.dbUsername = process.env.DB_USER;
 shared.dbPassword = process.env.DB_PASSWORD;
 // console.log(`Port: ${port}, User: ${shared.dbUsername}, pwd: ${shared.dbPassword}`);
 
+const options = {
+    origin: '*',
+}
+app.use(cors(options))
+
 app.get('/', (req: Request, res: Response) => {
+    // res.set('Access-Control-Allow-Origin', '*'); // Maybe also works for cors
     res.send('Hello Power World!');
 });
 
