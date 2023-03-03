@@ -25,6 +25,10 @@ app.get('/latest', (req: Request, res: Response) => {
     res.json(shared.latestPowerData);
 });
 
+app.get('/all', (req: Request, res: Response) => {
+    res.json(shared.latestPowerData);
+});
+
 app.get("*", (req, res) => {
     res.status(404).send('Page Not Found');
 });
